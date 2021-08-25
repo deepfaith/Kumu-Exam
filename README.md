@@ -14,7 +14,7 @@ Alternative installation is possible without local dependencies relying on [Dock
 
 Clone the repository
 
-    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
+    git clone https://github.com/deepfaith/Kumu-Exam.git
 
 Switch to the repo folder
 
@@ -67,7 +67,7 @@ The api can be accessed at [http://localhost:8000/api](http://localhost:8000/api
 ## API Specification
 
 
-> [Full API Spec](https://github.com/gothinkster/realworld/tree/master/api)
+> [Full API Spec](https://github.com/deepfaith/Kumu-Exam/tree/master/public)
 
 ----------
 

@@ -1,6 +1,6 @@
 # Kumu Test Backend API 
 
-[Laravel  REST API using Passport Authentication ](https://www.positronx.io/laravel-rest-api-with-passport-authentication-tutorial/)
+[Laravel  REST API using Passport Authentication ](https://github.com/deepfaith/Kumu-Exam)
 
 ----------
 

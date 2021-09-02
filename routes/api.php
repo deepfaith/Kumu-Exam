@@ -21,6 +21,7 @@ Route::post('register', [ApiAuthController::class, 'register']);
 Route::post('login', [ApiAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('githubuser/{username}', [GithubUserController::class, 'get']);
+    Route::get('githubuser/{username}', [GithubUserController::class, 'getGithubUser']);
+    Route::get('githubusers', [GithubUserController::class, 'getGithubUsers']);
     Route::post('hummingdistance', [Controller::class, 'solve_humming_distance']);
 });

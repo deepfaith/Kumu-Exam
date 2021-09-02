@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\ApiRequests;
 use App\Http\Traits\ResponseTrait;
 use App\Http\Traits\Helpers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -14,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ResponseTrait, ApiRequests, Helpers;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ResponseTrait, Helpers;
 
  	protected $base_url;
 
@@ -25,13 +24,13 @@ class Controller extends BaseController
    	public function __construct()
     {
         $this->base_url = 'https://api.github.com';
-       
-    } 	 
+
+    }
 
      /**
      * use to solve the humming distance of 2 integers.
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|string 
+     * @return \Illuminate\Http\JsonResponse|string
      */
    	public function solve_humming_distance(Request $request)
     {
@@ -45,9 +44,9 @@ class Controller extends BaseController
 		if ($validatorResponse->fails()) {
             return $this->sendInvalidFieldResponse($validatorResponse->errors());
         }
-        $dh = $this->humming_distance($request->x,$request->y);	
-	    
+        $dh = self::humming_distance($request->x,$request->y);
+
 	    return response()->json(['hummingdistance' => $dh], 200);
-    } 	    
-      
+    }
+
 }

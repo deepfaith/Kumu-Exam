@@ -3,6 +3,7 @@
 namespace App\Http\Classes;
 
 use App\Http\Controllers\GithubUserController;
+use App\Http\Traits\ResponseTrait;
 
 /**
  * GithubUser Class.
@@ -12,13 +13,31 @@ use App\Http\Controllers\GithubUserController;
  */
 class GithubUser
 {
+    use ResponseTrait;
 
 	public string $name;
     private string $githubuser;
     public string $login;
     public string $company;
     public int $no_of_followers;
-    public int $repos;
+    public int $setError = 0;
+
+    /**
+     * @return int
+     */
+    public function getSetError(): int
+    {
+        $this->setError = $this->setError ? $this->setError : 0;
+        return $this->setError;
+    }
+
+    /**
+     * @param int $setError
+     */
+    public function setSetError(int $setError): void
+    {
+        $this->setError = $setError;
+    }
     public int $no_of_publicrepos;
 
     /**
@@ -94,22 +113,6 @@ class GithubUser
     public function setNoOfFollowers(int $no_of_followers): void
     {
         $this->no_of_followers = $no_of_followers;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRepos(): int
-    {
-        return $this->repos;
-    }
-
-    /**
-     * @param int $repos
-     */
-    public function setRepos(int $repos): void
-    {
-        $this->repos = $repos;
     }
 
     /**

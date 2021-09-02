@@ -30,6 +30,7 @@ class GithubUserController extends Controller
      */
     public static function getIsListExec(): int
     {
+        self::$is_list_exec = self::$is_list_exec ? self::$is_list_exec : 0;
         return self::$is_list_exec;
     }
 
@@ -71,13 +72,22 @@ class GithubUserController extends Controller
                 //set the redis key as username and it's value based on the response
                 self::redis_set_cache($username,json_encode($response->json()));
             } catch (\Exception $e) {
-                abort(503);
+                if( self::getIsListExec() )
+                    return json_encode($this->sendCustomResponse(503,'Service Unavailable'));
+                else
+                    return $this->sendCustomResponse(503,'Service Unavailable');
             }
 
             if ( $response->status() == 401) {
-                throw new AuthenticationException();
+                if( self::getIsListExec() )
+                    return json_encode($this->sendCustomResponse(401,'Authentication Error'));
+                else
+                    throw new AuthenticationException();
             } else if (! $response->successful()) {
-                abort(503);
+                if( self::getIsListExec() )
+                    return json_encode($this->sendCustomResponse(503,'Service Unavailable',));
+                else
+                    abort(503);
             }
             $response = $response->json();
 
@@ -137,7 +147,8 @@ class GithubUserController extends Controller
         foreach( $users as $user ){
             if( $total != 11 ) {
                 $githubuser = self::setUser($user);
-                $userList->add($githubuser);
+                if( !$githubuser->getSetError() )
+                    $userList->add($githubuser);
             }else
                 break;
             $total++;
@@ -155,13 +166,24 @@ class GithubUserController extends Controller
      * @param string $githubusername
      * @return GithubUser
      */
-    private static function setUser(string $githubusername): GithubUser
+    private static function setUser(string $githubusername)
     {
+
         $user = new GithubUser();
 
-        //get the user in github
-        $response = $user->getGithubuser($githubusername);
-        $githubuser = json_decode($response);
+        try {
+            //get the user in github
+            $response = $user->getGithubuser($githubusername);
+            $githubuser = json_decode($response);
+        } catch (\Exception $e) {
+            $githubuser = new \stdClass();
+        }
+
+        if( !isset($githubuser->login) ){
+            $user->setName('');
+            $user->setSetError(1);
+            return $user;
+        }
 
         $user->setName($githubuser->name ? $githubuser->name : '');
         $user->setLogin($githubuser->login);

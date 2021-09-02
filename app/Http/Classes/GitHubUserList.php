@@ -12,7 +12,7 @@ class GithubUserList
     /**
     * @var GithubUser[] The GithubUsers
     */
-    private array $list;
+    private array $list = array();
 
 
     /**
@@ -34,6 +34,7 @@ class GithubUserList
     */
     public function all(): array
     {
+        $this->list = $this->list ? $this->list : [];
         return $this->list;
     }
 }

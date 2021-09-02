@@ -59,4 +59,5 @@ trait Helpers
     {
         Redis::set($key, $value, 'EX', 180);
     }
+
 }

@@ -4,6 +4,12 @@ namespace App\Http\Classes;
 
 use App\Http\Controllers\GithubUserController;
 
+/**
+ * GithubUser Class.
+ *
+ * @copyright  2021 Alan Padiernos
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class GithubUser
 {
 

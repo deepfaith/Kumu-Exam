@@ -24,8 +24,84 @@ Make sure the right content type like `Content-Type: application/json; charset=u
     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTRkYTAyMzkwZTVmZjAxMTJkM2IyNTY0ZTc5MjdiZDMxODM0NWY5MjgwOTY1NTZmZTgzYzlkYzMzOWM5MGQxNDU1ZWZjNjc4MjIwOWZmMjkiLCJpYXQiOjE2Mjk4OTQ1NTcsIm5iZiI6MTYyOTg5NDU1NywiZXhwIjoxNjYxNDMwNTU3LCJzdWIiOiIyNyIsInNjb3BlcyI6W119.sJy4s5WBJa5KS8j1XoCRmj5Nkp_yQnGFHUUubH_I_b5bnVmK9x4sFtFg9W8V3C6gDyiX5TVNxeWwfEmzrK551AqJNfs4TpgrwQMRSVEFSwBkDG_wkdbpC7wcxuySaGODyeUifkveoZpgA1T8h8fGNW4rBownPgoeTkLy2bkx7vOCaRBKXNc4n2A81R_eLqZDPTnr-5xKv_o8a3XjjvTZ8h63Nu3USB9wNSRULH3jsjYXLDBN6n4tVc2aEjLvHv_eEOaEnPhxxYSw8TKXSI8WSWDkGvtpvUxOcvgei4XDoMoCRHavPy7PTwJBbKHvAyxZNnhx7C5WZPqobAfXB7_BFJ8ALF3klsnmEdRfVExPiiHRCrTUEQcF2J_7uDOAAC-syxS5ixqwBKwnbVdF5kn8aH7-rknvXEaPJ_H3QVUZk8SsCQ03e8436KImnXvTab9Ca5n9YbYnBuJPjNgiawcLFNlC8Ghf2d9EABQEcaAo--WSBGajQauQScLb1JpHn3nseKpEDKwRRCyHGsjiTZkl4sIBn_ebBjDjbFWRzI3ga8PUy_AUGWFJcfZfTdINKJUh_q3TO8Kq6Ab8PpD5GyxKfhYcz-Fip5tQ-6Ip29Z9fVHSTFIdjnCJe1bDbPx9Khtgbso2zca77bY86OaVhlsEdaYPaPq5kiM1floVAKD32wI"
 }
 ```
+### Users
 
-### From Github Users
+```JSON
+[
+    {
+        "name": "Ævar Arnfjörð Bjarmason",
+        "login": "avar",
+        "company": "",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 30
+    },
+    {
+        "name": "Shawn O. Pearce",
+        "login": "spearce",
+        "company": "",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 8
+    },
+    {
+        "name": "Michael Haggerty",
+        "login": "mhagger",
+        "company": "GitHub",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 13
+    },
+    {
+        "name": "Linus Torvalds",
+        "login": "torvalds",
+        "company": "Linux Foundation",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 6
+    },
+    {
+        "name": "Junio C Hamano",
+        "login": "gitster",
+        "company": "Google",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 11
+    },
+    {
+        "name": "Johannes Schindelin",
+        "login": "dscho",
+        "company": "@Microsoft",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 30
+    },
+    {
+        "name": "Jeff King",
+        "login": "peff",
+        "company": "GitHub",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 30
+    },
+    {
+        "name": "Duy Nguyen",
+        "login": "pclouds",
+        "company": "",
+        "no_of_followers": 30,
+        "no_of_publicrepos": 3
+    },
+    {
+        "name": "",
+        "login": "jrn",
+        "company": "",
+        "no_of_followers": 16,
+        "no_of_publicrepos": 0
+    },
+    {
+        "name": "",
+        "login": "rscharfe",
+        "company": "",
+        "no_of_followers": 2,
+        "no_of_publicrepos": 3
+    }
+]
+```
+
+### From Github User
 
 ```JSON
 {
@@ -115,10 +191,8 @@ Required fields: `name`, `email`, `password`
 Example request body:
 ```JSON
 {
-  "user":{
     "email": "jake@jake.jake",
     "password": "jakejake"
-  }
 }
 ```
 
@@ -126,6 +200,20 @@ No authentication required, returns a [User](#users-for-authentication)
 
 Required fields: `email`, `password`
 
+### Get Current/User From Github
+
+`GET /githubusers`
+
+Example request body:
+```JSON
+{
+    "sort": "asc",
+    "usernames[]": "(optional)jakejake",
+    "usernames[]": "(optional)jakejake2"
+}
+```
+
+Authentication required, returns list of Users
 
 
 ### Get Current/User From Github

@@ -23,23 +23,25 @@ class GithubUserController extends Controller
     /**
      * @var int
      */
-    private int $is_list_exec;
+    private static int $is_list_exec = 0;
 
     /**
      * @return int
      */
-    public function getIsListExec(): int
+    public static function getIsListExec(): int
     {
-        return $this->is_list_exec;
+        return self::$is_list_exec;
     }
 
     /**
      * @param int $is_list_exec
      */
-    public function setIsListExec(int $is_list_exec): void
+    public static function setIsListExec(int $is_list_exec): void
     {
-        $this->is_list_exec = $is_list_exec;
+        self::$is_list_exec = $is_list_exec;
     }
+
+
 
     /**
      * Get the users from github api
@@ -59,7 +61,7 @@ class GithubUserController extends Controller
         }
         else{
             try {
-                if( $this->getIsListExec() )
+                if( self::getIsListExec() )
                     sleep(5);
                 $response = Http::get($this->base_url .'/users/'. $username);
 

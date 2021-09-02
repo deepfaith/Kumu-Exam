@@ -57,7 +57,10 @@ class GithubUserController extends Controller
         $is_cached = self::redis_get_cache($username);
         if( $is_cached )
         {
-            $response = response()->json(json_decode($is_cached));
+            if( self::getIsListExec() )
+                $response = $is_cached;
+            else
+                $response = response()->json(json_decode($is_cached));
         }
         else{
             try {

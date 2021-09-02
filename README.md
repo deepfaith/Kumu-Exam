@@ -1,6 +1,6 @@
 # Kumu Test Backend API 
 
-[Laravel  REST API using Passport Authentication ](https://www.positronx.io/laravel-rest-api-with-passport-authentication-tutorial/)
+[Laravel  REST API using Passport Authentication ](https://github.com/deepfaith/Kumu-Exam)
 
 ----------
 
@@ -10,15 +10,13 @@
 
 Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/5.4/installation#installation)
 
-Alternative installation is possible without local dependencies relying on [Docker](#docker). 
-
 Clone the repository
 
-    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
+    git clone https://github.com/deepfaith/Kumu-Exam.git
 
 Switch to the repo folder
 
-    cd laravel-realworld-example-app
+    cd Kumu-Exam-master
 
 Install all the dependencies using composer
 
@@ -67,7 +65,7 @@ The api can be accessed at [http://localhost:8000/api](http://localhost:8000/api
 ## API Specification
 
 
-> [Full API Spec](https://github.com/gothinkster/realworld/tree/master/api)
+> [Full API Spec](https://github.com/deepfaith/Kumu-Exam/tree/master/public)
 
 ----------
 
